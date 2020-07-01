@@ -1,0 +1,44 @@
+---
+layout: empty
+title: Implementations
+subtitle: All libraries / applications / demos of which we're aware
+---
+<main class="cards">
+    {% for impl in site.data.implementations %}
+    <article>
+        <header>
+            <h2>
+                {% if impl.official %}
+                <span class="tag is-primary">Official</span>
+                {% endif %}
+                {{impl.title}}
+            </h2>
+            <p>
+                {{impl.description}}
+            </p>
+        </header>
+        <section>
+            <h3>Maintainers</h3>
+            <ul>
+                {% for maintainer in impl.maintainers %}
+                <li>{{maintainer.name}}</li>
+                {% endfor %}
+            </ul>
+        </section>
+        <section>
+            <h3>License</h3>
+            <p>{{impl.license}}</p>
+        </section>
+        <footer>
+            {% for link in impl.links %}
+            <a href="{{link.url}}">
+                {% if link.icon %}
+                {% include feather.html icon=link.icon %}
+                {% endif %}
+                {{link.title}}
+            </a>
+            {% endfor %}
+        </footer>
+    </article>
+    {% endfor %}
+</main>

@@ -1,0 +1,17 @@
+title: Base32H
+description: >-
+  Base32H is a numeric base representation optimized for human readability and
+  ease of use.
+github_username:  base32h
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+markdown: kramdown
+#theme: minima
+repository: base32h/base32h.github.io
+plugins:
+  - jekyll-feed
+kramdown:
+  auto_ids: true

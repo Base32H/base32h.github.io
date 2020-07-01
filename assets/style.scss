@@ -1,0 +1,160 @@
+---
+# Is the frontmatter necessary?
+---
+
+@import "bulma";
+
+body {
+    >nav {
+        @extend .navbar;
+        @extend .is-black;
+
+        li {
+            @extend .navbar-item;
+            
+            * {
+                @extend .has-text-light;
+            }
+
+            a {
+                display: flex;
+            }
+        }
+
+        .navbar-menu {
+            @extend .is-active;
+            background-color: #0a0a0a;
+        }
+
+        .navbar-brand {
+            font-weight: bolder;
+
+            li {
+                @extend .title;
+            }
+        }
+    }
+
+    >header, >main, >footer {
+        @extend .section;
+    }
+
+    >header {
+        h1 {
+            @extend .title;
+            @extend .is-1;
+        }
+
+        p {
+            @extend .subtitle;
+            @extend .is-3;
+        }
+    }
+
+    >footer {
+        @extend .content;
+    }
+}
+
+.cards {
+    @extend .columns;
+    @extend .is-multiline;
+    @extend .is-8;
+    
+    > * {
+        @extend .column;
+        @extend .is-half-tablet;
+        @extend .is-one-third-desktop;
+        @extend .is-one-quarter-widescreen;
+        @extend .is-one-fifth-fullhd;
+        @extend .card;
+        //height: 20em;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+
+        >header {
+            flex: 1;
+            @extend .card-content;
+
+            >h2 {
+                @extend .title;
+                @extend .is-full;
+            }
+            
+            >p {
+                @extend .subtitle;
+            }
+        }
+
+        >section {
+            @extend .card-content;
+            @extend .py-0;
+            @extend .my-0;
+            @extend .level;
+            @extend .is-mobile;
+            flex: none;
+            align-items: first baseline;
+
+            >* {
+                @extend .level-right;
+                @extend .my-0;
+                vertical-align: top;
+                flex-shrink: 1;
+
+                * {
+                    text-align: right;
+                }
+            }
+
+            >h3 {
+                @extend .level-left;
+                @extend .title;
+                @extend .is-6;
+                @extend .my-0;
+                @extend .mr-2;
+                flex-shrink: 0;
+            }
+        }
+
+        >footer {
+            @extend .card-footer;
+            flex: none;
+
+            >* {
+                @extend .card-footer-item;
+            }
+        }
+    }
+}
+
+.has-addons {
+    flex-wrap: wrap;
+
+    .help {
+        flex-basis: 100%;
+    }
+}
+
+.feather-icon {
+    @extend .icon;
+    margin-right: 0 !important;
+
+    >svg {
+        width: 1em;
+        height: 1em;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        fill: none;
+    }
+}
+
+.tile {
+    flex-grow: 0;
+}
+
+.tile.is-main {
+    flex-grow: 1;
+}

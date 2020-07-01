@@ -1,0 +1,6 @@
+[submodule "assets/base32h"]
+	path = assets/base32h
+	url = https://github.com/Base32H/base32h.js.git
+[submodule "_sass/bulma"]
+	path = _sass/bulma
+	url = https://github.com/jgthms/bulma.git

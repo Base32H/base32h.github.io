@@ -1,0 +1,27 @@
+- title: base32h.tcl
+  maintainers:
+    - name: 'Ryan S. Northrup ("RyNo")'
+      email: northrup@yellowapple.us
+  description: >-
+    Tcl 8.6 package
+  license: ISC
+  links:
+    - title: Github
+      url: https://github.com/Base32H/base32h.tcl
+      icon: github
+  official: true
+- title: base32h.js
+  maintainers:
+    - name: 'Ryan S. Northrup ("RyNo")'
+      email: northrup@yellowapple.us
+  description: >-
+    NPM package / JS library
+  license: ISC
+  links:
+    - title: Github
+      url: https://github.com/Base32H/base32h.js
+      icon: github
+    - title: NPM
+      url: https://npmjs.com/package/@base32h/base32h
+      icon: package
+  official: true

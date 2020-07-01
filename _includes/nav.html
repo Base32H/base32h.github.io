@@ -1,0 +1,36 @@
+<nav>
+    <ul class="navbar-brand">
+        <li><a href="/">{{site.title}}</a></li>
+    </ul>
+
+    <div class="navbar-menu">
+        <ul class="navbar-start">
+            <li><a href="/faq">
+                    {% include feather.html icon="help-circle" %}
+                    <span>FAQ</span>
+            </a></li>
+            <li><a href="/usecases">
+                    {% include feather.html icon="target" %}
+                    <span>Use Cases</span>
+            </a></li>
+            <li><a href="/specification">
+                    {% include feather.html icon="file-text" %}
+                    <span>Specification</span>
+            </a></li>
+            <li><a href="/implementations">
+                    {% include feather.html icon="code" %}
+                    <span>Implementations</span>
+            </a></li>
+            <li><a href="/comparisons">
+                    {% include feather.html icon="sunset" %}
+                    <span>Comparisons</span>
+            </a></li>
+        </ul>
+        <ul class="navbar-end">
+            <li><a href="https://github.com/base32h">
+                    {% include feather.html icon="github" %}
+                    <span>Github</span>
+            </a></li>
+        </ul>
+    </div>
+</nav>
