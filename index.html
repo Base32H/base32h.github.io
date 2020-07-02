@@ -119,6 +119,7 @@ Javascript can accurately represent, so the above value is probably incorrect.";
                     <input id="demo-decoded"
                            class="input"
                            type="number"
+                           onkeydown="if (event.key == 'Enter') {encode()}"
                            placeholder="Decoded (1234567890)"/>
                 </div>
                 <div class="control">
@@ -161,6 +162,7 @@ Javascript can accurately represent, so the above value is probably incorrect.";
                     <input id="demo-encoded"
                            class="input"
                            type="text"
+                           onkeydown="if (event.key == 'Enter') {decode()}"
                            placeholder="Encoded (HELL0W0RLD)"/>
                 </div>
             </div>
