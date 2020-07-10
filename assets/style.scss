@@ -68,10 +68,26 @@ body {
         @extend .is-one-quarter-widescreen;
         @extend .is-one-fifth-fullhd;
         @extend .card;
-        //height: 20em;
         display: flex;
         flex-direction: column;
         padding: 0;
+        margin: calc(#{$gap} / 2);
+
+        @media (min-width: $tablet) {
+            width: calc(50% - #{$gap});
+        }
+
+        @media (min-width: $desktop) {
+            width: calc(33.3333% - #{$gap});
+        }
+
+        @media (min-width: $widescreen) {
+            width: calc(25% - #{$gap});
+        }
+
+        @media (min-width: $fullhd) {
+            width: calc(20% - #{$gap});
+        }
 
         >header {
             flex: 1;
