@@ -96,6 +96,12 @@ body {
             >h2 {
                 @extend .title;
                 @extend .is-full;
+
+                >.tag {
+                    position: absolute;
+                    top: 0.5em;
+                    right: 0.5em;
+                }
             }
             
             >p {
