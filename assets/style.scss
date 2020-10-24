@@ -180,3 +180,20 @@ body {
 .tile.is-main {
     flex-grow: 1;
 }
+
+.help {
+    border-radius: 4px;
+    padding: calc(0.5em - 1px) 1em calc(0.5em - 1px) 1em;
+}
+
+.help.is-warning {
+    color: #000000;
+    background-color: #ffdd57;
+    border-radius: 4px;
+}
+
+.help.is-danger {
+    color: #ffffff;
+    background-color: #f14668;
+    border-radius: 4px;
+}
