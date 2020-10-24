@@ -51,3 +51,13 @@
     - title: Hex
       url: https://hex.pm/packages/base32h
       icon: package
+- title: python-base32h
+  maintainers:
+    - name: jimlay
+  description: >-
+    Python library
+  license: Apache 2.0
+  links:
+    - title: Github
+      url: https://github.com/jimlay/python-base32h
+      icon: github
