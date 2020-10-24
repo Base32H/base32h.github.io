@@ -25,3 +25,29 @@
       url: https://npmjs.com/package/@base32h/base32h
       icon: package
   official: true
+- title: base32h.php
+  maintainers:
+    - name: 'Ari Selseng'
+  description: >-
+    Composer package / PHP library
+  license: MIT
+  links:
+    - title: Github
+      url: https://github.com/ariselseng/base32h
+      icon: github
+    - title: Composer
+      url: https://packagist.org/packages/ariselseng/base32h
+      icon: package
+- title: base32h.ex
+  maintainers:
+    - name: 'Jechol Lee'
+  description: >-
+    Hex package / Elixir library
+  license: MIT
+  links:
+    - title: Github
+      url: https://github.com/jechol/base32h
+      icon: github
+    - title: Hex
+      url: https://hex.pm/packages/base32h
+      icon: package
