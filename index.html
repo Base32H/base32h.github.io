@@ -7,31 +7,81 @@ title: Home
     // @license magnet:?xt=urn:btih:b8999bbaf509c08d127678643c515b9ab0836bae&dn=ISC.txt ISC
     console.log(base32h.encodeBin(base32h.decodeBin('hello world')));
     var decBase = 10;
+    var decBin = false;
 
     function switchDecBase() {
         console.log("Switching...");
         var baseField = document.getElementById("demo-base");
         var decField = document.getElementById("demo-decoded");
-        decBase = parseInt(baseField.options[baseField.selectedIndex].value);
+        decBase = baseField.options[baseField.selectedIndex].value;
 
         switch (decBase) {
-        case 16:
+        case "binstr":
+            decField.setAttribute("placeholder",
+                                  "Decoded (What in tarnation???)");
+            decField.setAttribute("type", "text");
+            decBin = true;
+            break;
+        case "bin64":
+            decField.setAttribute("placeholder",
+                                  "Decoded (V2hhdCBpbiB0YXJuYXRpb24/Pz8=)");
+            decField.setAttribute("type", "text");
+            decBin = true;
+            break;
+        case "16":
             decField.setAttribute("placeholder", "Decoded (1234CAFE)");
             decField.setAttribute("type", "text");
+            decBin = false;
             break;
         default:
             decField.setAttribute("placeholder", "Decoded (1234567890)");
             decField.setAttribute("type", "number");
+            decBin = false;
         }
     }
 
     function encode() {
-        console.log("Encoding...");
+        if (decBin) {
+            encodeBin();
+        } else {
+            encodeNum();
+        }
+    }
+
+    function encodeBin() {
+        console.log("Encoding binary...");
         clearErrors();
         var encField = document.getElementById("demo-encoded");
         var decField = document.getElementById("demo-decoded");
 
-        var decoded = parseInt(decField.value, decBase);
+        var decoded = decField.value;
+        if (decBase == "bin64") {
+            decoded = atob(decoded);
+        }
+
+        if (decoded.length % 5 > 0) {
+            decField.classList.add("is-warning");
+            var msg = document.createElement("p");
+            msg.id = "demo-decoded-message";
+            msg.classList.add("help");
+            msg.classList.add("is-warning");
+            decField.parentElement.parentElement.appendChild(msg);
+            msg.textContent = "The number of bytes in the data you're \
+decoding ain't cleanly divisible by 5, so the encoded value includes \
+nulls for padding, which will show up if you decode the below encoded \
+data.";
+        }
+        
+        encField.value = base32h.encodeBin(decoded);
+    }
+
+    function encodeNum() {
+        console.log("Encoding number...");
+        clearErrors();
+        var encField = document.getElementById("demo-encoded");
+        var decField = document.getElementById("demo-decoded");
+
+        var decoded = parseInt(decField.value, parseInt(decBase));
         if (isNaN(decoded)) {
             decField.classList.add("is-danger");
             var msg = document.createElement("p");
@@ -50,15 +100,43 @@ title: Home
             msg.classList.add("help");
             msg.classList.add("is-warning");
             decField.parentElement.parentElement.appendChild(msg);
-            msg.textContent = "The number you're encoding is bigger than what \
-Javascript can accurately represent, so the below value is probably incorrect.";
+            msg.textContent = "The number you're encoding is bigger than \
+what Javascript can accurately represent, so the below value is probably \
+incorrect.";
         }
 
         encField.value = base32h.encode(decoded);
     }
 
     function decode() {
-        console.log("Decoding...");
+        if (decBin) {
+            decodeBin();
+        } else {
+            decodeNum();
+        }
+    }
+
+    function decodeBin() {
+        console.log("Decoding binary...");
+        clearErrors();
+        var encField = document.getElementById("demo-encoded");
+        var decField = document.getElementById("demo-decoded");
+
+        var decoded = base32h.decodeBin(encField.value);
+        var encoded = ""
+        for (var i = 0; i < decoded.length; i++) {
+            encoded += String.fromCharCode(decoded[i]);
+        }
+
+        if (decBase == "bin64") {
+            encoded = btoa(encoded);
+        }
+
+        decField.value = encoded;
+    }
+
+    function decodeNum() {
+        console.log("Decoding number...");
         clearErrors();
         var encField = document.getElementById("demo-encoded");
         var decField = document.getElementById("demo-decoded");
@@ -72,11 +150,12 @@ Javascript can accurately represent, so the below value is probably incorrect.";
             msg.classList.add("help");
             msg.classList.add("is-warning");
             encField.parentElement.parentElement.appendChild(msg);
-            msg.textContent = "The number you're decoding is bigger than what \
-Javascript can accurately represent, so the above value is probably incorrect.";
+            msg.textContent = "The number you're decoding is bigger than \
+what Javascript can accurately represent, so the above value is probably \
+incorrect.";
         }
 
-        decField.value = decoded.toString(decBase);
+        decField.value = decoded.toString(parseInt(decBase));
     }
 
     function nuke() {
@@ -131,6 +210,8 @@ Javascript can accurately represent, so the above value is probably incorrect.";
                         <select id="demo-base" onchange="switchDecBase()">
                             <option value="10">Decimal</option>
                             <option value="16">Hexadecimal</option>
+                            <option value="bin64">Binary (base64)</option>
+                            <option value="binstr">Binary (string)</option>
                         </select>
                     </div>
                 </div>
