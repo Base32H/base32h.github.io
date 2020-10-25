@@ -25,6 +25,21 @@
       url: https://npmjs.com/package/@base32h/base32h
       icon: package
   official: true
+- title: base32h.rb
+  maintainers:
+    - name: 'Ryan S. Northrup ("RyNo")'
+      email: northrup@yellowapple.us
+  description: >-
+    Ruby gem/library
+  license: ISC
+  links:
+    - title: Github
+      url: https://github.com/Base32H/base32h.rb
+      icon: github
+    - title: RubyGems
+      url: https://rubygems.org/gems/base32h
+      icon: package
+  official: true
 - title: base32h.php
   maintainers:
     - name: 'Ari Selseng'
