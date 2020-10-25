@@ -28,6 +28,12 @@ title: Home
             decField.setAttribute("type", "text");
             decBin = true;
             break;
+        case "bin16":
+            decField.setAttribute("placeholder",
+                                  "Decoded ()");
+            decField.setAttribute("type", "text");
+            decBin = true;
+            break;
         case "16":
             decField.setAttribute("placeholder", "Decoded (1234CAFE)");
             decField.setAttribute("type", "text");
@@ -55,8 +61,13 @@ title: Home
         var decField = document.getElementById("demo-decoded");
 
         var decoded = decField.value;
+        
         if (decBase == "bin64") {
             decoded = atob(decoded);
+        }
+
+        if (decBase == "bin16") {
+            decoded = hex2bin(decoded);
         }
 
         if (decoded.length % 5 > 0) {
@@ -132,6 +143,10 @@ incorrect.";
             encoded = btoa(encoded);
         }
 
+        if (decBase == "bin16") {
+            encoded = bin2hex(encoded);
+        }
+
         decField.value = encoded;
     }
 
@@ -185,6 +200,34 @@ incorrect.";
         if (encMsg) {encWrap.removeChild(encMsg);}
         if (decMsg) {decWrap.removeChild(decMsg);}
     }
+
+    function bin2hex(bin) {
+        var hex = "";
+        for (var i = 0; i < bin.length; i++) {
+            var byte = bin.charCodeAt(i).toString(16);
+            if (byte.length == 1) {
+                byte = "0" + byte;
+            }
+            hex += byte;
+        }
+        return hex.toUpperCase();
+    }
+
+    function hex2bin(hex) {
+        var hexDigits = [
+            '0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'
+        ]
+        hex = hex.toUpperCase();
+        hex = hex.split('').filter(h => hexDigits.includes(h)).join('');
+        if (hex.length % 2 > 0) {
+            hex = "0" + hex;
+        }
+        var bin = "";
+        for (var i = 0; i < hex.length; i += 2) {
+            bin += String.fromCharCode(parseInt(hex.substr(i,2), 16));
+        }
+        return bin;
+    }
     // @license-end
 </script>
 
@@ -210,6 +253,7 @@ incorrect.";
                         <select id="demo-base" onchange="switchDecBase()">
                             <option value="10">Decimal</option>
                             <option value="16">Hexadecimal</option>
+                            <option value="bin16">Binary (base16)</option>
                             <option value="bin64">Binary (base64)</option>
                             <option value="binstr">Binary (string)</option>
                         </select>
